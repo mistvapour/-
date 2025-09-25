@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小李家的菜单收藏 - 博客</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+      background: linear-gradient(135deg, #f8f6f0 0%, #f5f3f0 100%);
+      color: #2c1810;
+      padding: 20px;
+      min-height: 100vh;
+      line-height: 1.4;
+      position: relative;
+    }
+    
+    /* 背景装饰元素 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(212, 163, 115, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.02) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(139, 69, 19, 0.1);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* 装饰边框 */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 2px solid #d4a373;
+      border-radius: 15px;
+      opacity: 0.3;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #2c1810;
+      margin-bottom: 10px;
+      letter-spacing: 0.1em;
+    }
+    
+    .header .subtitle {
+      font-size: 1.1rem;
+      color: #8b4513;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+    }
+    
+    /* 装饰线条 */
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4a373, transparent);
+    }
+    
+    .nav {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .nav a {
+      display: inline-block;
+      margin: 0 15px;
+      padding: 8px 16px;
+      background: rgba(212, 163, 115, 0.1);
+      color: #8b4513;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav a:hover {
+      background: #d4a373;
+      color: white;
+    }
+    
+    .blog-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .post-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(212, 163, 115, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d4a373, #8b4513);
+    }
+    
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(139, 69, 19, 0.2);
+      border-color: #d4a373;
+    }
+    
+    .post-card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #2c1810;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .post-card .date {
+      font-size: 0.9rem;
+      color: #8b4513;
+      margin-bottom: 15px;
+      font-weight: 300;
+    }
+    
+    .post-card .description {
+      font-size: 0.85rem;
+      color: #5c4a3a;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    
+    .post-card .preview {
+      font-size: 0.8rem;
+      color: #8b4513;
+      background: rgba(212, 163, 115, 0.1);
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      border-left: 3px solid #d4a373;
+    }
+    
+    .post-card .view-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #d4a373, #8b4513);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .post-card .view-btn:hover {
+      background: linear-gradient(135deg, #8b4513, #d4a373);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+    }
+    
+    .menu-icon {
+      font-size: 1.2rem;
+      margin-right: 8px;
+      color: #d4a373;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(212, 163, 115, 0.2);
+      color: #8b4513;
+      font-size: 0.9rem;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
+      .container {
+        padding: 25px 20px;
+        border-radius: 12px;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .blog-posts {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🍽️ 小李家的菜单收藏</h1>
+      <div class="subtitle">Menu Collection Blog</div>
+    </header>
+
+    <nav class="nav">
+      <a href="#home">首页</a>
+      <a href="#menu">菜单</a>
+      <a href="#about">关于</a>
+      <a href="#contact">联系</a>
+    </nav>
+
+    <div class="blog-posts">
+      <div class="post-card">
+        <h3><span class="menu-icon">🍽</span>今日菜单</h3>
+        <div class="date">2024年9月19日</div>
+        <div class="description">经典中式菜单，包含前菜、主菜、主食和饭后水果的完整搭配。</div>
+        <div class="preview">
+          <strong>特色菜品：</strong><br>
+          • 柚子海盐起泡酒<br>
+          • 芋头滑牛肉<br>
+          • 丝瓜罗氏虾<br>
+          • 金钻凤梨
+        </div>
+        <a href="menu-2024-09-19.html" class="view-btn">查看菜单</a>
+      </div>
+
+      <div class="post-card">
+        <h3><span class="menu-icon">🍽</span>今日晚餐</h3>
+        <div class="date">2024年9月25日</div>
+        <div class="description">精致晚餐菜单，中英文对照，包含餐前酒、前菜、配菜、主菜和甜点。</div>
+        <div class="preview">
+          <strong>特色菜品：</strong><br>
+          • 酒酿冰奶<br>
+          • 三文鱼刺身<br>
+          • 罗氏虾丝瓜汤<br>
+          • 巨峰葡萄
+        </div>
+        <a href="menu-2024-09-25.html" class="view-btn">查看菜单</a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>© 2024 小李家的菜单收藏 | 用 ❤️ 制作</p>
+    </footer>
+  </div>
+
+  <script>
+    // 添加页面加载动画
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.post-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          card.style.transition = 'all 0.5s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+    });
+    
+    // 添加点击统计功能
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const menuName = this.closest('.post-card').querySelector('h3').textContent.trim();
+        console.log(`正在打开菜单: ${menuName}`);
+      });
+    });
+  </script>
+</body>
+</html>
