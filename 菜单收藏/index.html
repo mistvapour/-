@@ -3,13 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  
-  <!-- SEO标签 -->
-  {% seo %}
-  
-  <!-- 样式 -->
+  <title>菜单收藏 - 小李家的菜单收藏</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap');
     
@@ -122,8 +116,80 @@
       color: white;
     }
     
-    .content {
-      margin-bottom: 40px;
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .menu-item {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(212, 163, 115, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .menu-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d4a373, #8b4513);
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(139, 69, 19, 0.2);
+      border-color: #d4a373;
+    }
+    
+    .menu-item h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #2c1810;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .menu-item .date {
+      font-size: 0.9rem;
+      color: #8b4513;
+      margin-bottom: 15px;
+      font-weight: 300;
+    }
+    
+    .menu-item .view-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #d4a373, #8b4513);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .menu-item .view-btn:hover {
+      background: linear-gradient(135deg, #8b4513, #d4a373);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+    }
+    
+    .menu-icon {
+      font-size: 1.2rem;
+      margin-right: 8px;
+      color: #d4a373;
     }
     
     .footer {
@@ -149,6 +215,11 @@
       .header h1 {
         font-size: 2rem;
       }
+      
+      .menu-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -165,23 +236,31 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1>🍽️ {{ site.title }}</h1>
-      <div class="subtitle">{{ site.description }}</div>
+      <h1>🍽️ 菜单收藏</h1>
+      <div class="subtitle">Menu Collection</div>
     </header>
 
     <nav class="nav">
-      <a href="{{ '/' | relative_url }}">首页</a>
-      <a href="{{ '/menus/' | relative_url }}">菜单</a>
-      <a href="{{ '/about/' | relative_url }}">关于</a>
-      <a href="{{ '/contact/' | relative_url }}">联系</a>
+      <a href="../">返回首页</a>
+      <a href="#menu">菜单列表</a>
     </nav>
 
-    <main class="content">
-      {{ content }}
-    </main>
+    <div class="menu-list" id="menu">
+      <div class="menu-item">
+        <h3><span class="menu-icon">🍽</span>今日菜单</h3>
+        <div class="date">2024年9月19日</div>
+        <a href="菜单-2024年9月19日.html" class="view-btn">查看菜单</a>
+      </div>
+
+      <div class="menu-item">
+        <h3><span class="menu-icon">🍽</span>今日晚餐</h3>
+        <div class="date">2024年9月25日</div>
+        <a href="菜单-2024年9月25日.html" class="view-btn">查看菜单</a>
+      </div>
+    </div>
 
     <footer class="footer">
-      <p>© {{ 'now' | date: "%Y" }} {{ site.title }} | 用 ❤️ 制作</p>
+      <p>© 2024 小李家的菜单收藏 | 用 ❤️ 制作</p>
     </footer>
   </div>
 </body>
