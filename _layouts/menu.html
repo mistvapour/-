@@ -1,0 +1,199 @@
+---
+layout: default
+---
+
+<article class="menu-post">
+  <header class="menu-header">
+    <h1>{{ page.title }}</h1>
+    <div class="menu-date">{{ page.date | date: "%Y年%m月%d日" }}</div>
+  </header>
+
+  <div class="menu-content">
+    {{ content }}
+  </div>
+
+  <div class="menu-navigation">
+    {% if page.previous %}
+      <a href="{{ page.previous.url }}" class="nav-link prev">← {{ page.previous.title }}</a>
+    {% endif %}
+    {% if page.next %}
+      <a href="{{ page.next.url }}" class="nav-link next">{{ page.next.title }} →</a>
+    {% endif %}
+  </div>
+</article>
+
+<style>
+  .menu-post {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .menu-header h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2c1810;
+    margin-bottom: 8px;
+    letter-spacing: 0.1em;
+  }
+  
+  .menu-date {
+    font-size: 1rem;
+    color: #8b4513;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+  }
+  
+  .menu-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4a373, transparent);
+  }
+  
+  .menu-content {
+    margin-bottom: 40px;
+  }
+  
+  .menu-section {
+    margin-bottom: 25px;
+    position: relative;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .section-icon {
+    font-size: 1.2rem;
+    margin-right: 12px;
+    color: #d4a373;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #8b4513;
+    letter-spacing: 0.1em;
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background: #d4a373;
+  }
+  
+  .dish-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .dish-item {
+    margin-bottom: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .dish-item:hover {
+    background: rgba(212, 163, 115, 0.05);
+    border-radius: 8px;
+    padding: 12px 10px;
+    margin: 12px -10px;
+  }
+  
+  .dish-item:last-child {
+    border-bottom: none;
+  }
+  
+  .dish-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  
+  .dish-emoji {
+    font-size: 1.1rem;
+    margin-right: 10px;
+    color: #d4a373;
+  }
+  
+  .dish-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2c1810;
+    letter-spacing: 0.05em;
+  }
+  
+  .dish-description {
+    font-size: 0.85rem;
+    color: #5c4a3a;
+    line-height: 1.4;
+    margin-left: 2.1rem;
+    font-weight: 300;
+  }
+  
+  .menu-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(212, 163, 115, 0.2);
+  }
+  
+  .nav-link {
+    color: #8b4513;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: rgba(212, 163, 115, 0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background: #d4a373;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .menu-header h1 {
+      font-size: 1.8rem;
+    }
+    
+    .section-title {
+      font-size: 1.1rem;
+    }
+    
+    .dish-title {
+      font-size: 1rem;
+    }
+    
+    .dish-description {
+      font-size: 0.8rem;
+      margin-left: 1.8rem;
+    }
+    
+    .menu-navigation {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>

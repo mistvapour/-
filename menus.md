@@ -1,6 +1,7 @@
 ---
 layout: default
-title: 首页
+title: 菜单收藏
+permalink: /menus/
 ---
 
 <div class="blog-posts">
@@ -121,28 +122,3 @@ title: 首页
     }
   }
 </style>
-
-<script>
-  // 添加页面加载动画
-  document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.post-card');
-    cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      
-      setTimeout(() => {
-        card.style.transition = 'all 0.5s ease';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, index * 200);
-    });
-  });
-  
-  // 添加点击统计功能
-  document.querySelectorAll('.view-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      const menuName = this.closest('.post-card').querySelector('h3').textContent.trim();
-      console.log(`正在打开菜单: ${menuName}`);
-    });
-  });
-</script>
