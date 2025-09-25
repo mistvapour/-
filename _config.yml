@@ -39,7 +39,7 @@ include:
 collections:
   menus:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:name/
 
 # 默认设置
 defaults:

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日晚餐 - 2024年9月25日</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+      background: linear-gradient(135deg, #f8f6f0 0%, #f5f3f0 100%);
+      color: #2c1810;
+      padding: 20px;
+      min-height: 100vh;
+      line-height: 1.4;
+      position: relative;
+    }
+    
+    /* 背景装饰元素 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(212, 163, 115, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.02) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(139, 69, 19, 0.1);
+      padding: 30px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* 装饰边框 */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 2px solid #d4a373;
+      border-radius: 15px;
+      opacity: 0.3;
+    }
+    
+    .menu-title {
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    .menu-title h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #2c1810;
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+    
+    .menu-title .subtitle {
+      font-size: 1rem;
+      color: #8b4513;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+    }
+    
+    /* 装饰线条 */
+    .menu-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4a373, transparent);
+    }
+    
+    .menu-section {
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      position: relative;
+    }
+    
+    .section-icon {
+      font-size: 1.2rem;
+      margin-right: 12px;
+      color: #d4a373;
+    }
+    
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #8b4513;
+      letter-spacing: 0.1em;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 60px;
+      height: 1px;
+      background: #d4a373;
+    }
+    
+    .dish-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .dish-item {
+      margin-bottom: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .dish-item:hover {
+      background: rgba(212, 163, 115, 0.05);
+      border-radius: 8px;
+      padding: 12px 10px;
+      margin: 12px -10px;
+    }
+    
+    .dish-item:last-child {
+      border-bottom: none;
+    }
+    
+    .dish-name {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    
+    .dish-emoji {
+      font-size: 1.1rem;
+      margin-right: 10px;
+      color: #d4a373;
+    }
+    
+    .dish-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2c1810;
+      letter-spacing: 0.05em;
+    }
+    
+    .dish-description {
+      font-size: 0.85rem;
+      color: #5c4a3a;
+      line-height: 1.4;
+      margin-left: 2.1rem;
+      font-weight: 300;
+    }
+    
+    .nav-links {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(212, 163, 115, 0.2);
+    }
+    
+    .nav-link {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 8px 16px;
+      background: rgba(212, 163, 115, 0.1);
+      color: #8b4513;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      background: #d4a373;
+      color: white;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
+      .container {
+        padding: 25px 20px;
+        border-radius: 12px;
+      }
+      
+      .menu-title h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.1rem;
+      }
+      
+      .dish-title {
+        font-size: 1rem;
+      }
+      
+      .dish-description {
+        font-size: 0.8rem;
+        margin-left: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .menu-title h1 {
+        font-size: 1.6rem;
+      }
+      
+      .dish-item:hover {
+        margin: 12px -8px;
+        padding: 12px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="menu-title">
+      <h1>今日晚餐</h1>
+      <div class="subtitle">2024年9月25日 星期三</div>
+    </header>
+
+    <section class="menu-section">
+      <div class="section-header">
+        <span class="section-icon">🍸</span>
+        <h2 class="section-title">餐前酒 · Aperitif</h2>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-name">
+            <span class="dish-emoji">🍸</span>
+            <span class="dish-title">酒酿冰奶 · Rice Wine Iced Milk</span>
+          </div>
+          <p class="dish-description">传统酒酿与冰牛奶的完美融合，香甜醇厚，开胃怡人。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="menu-section">
+      <div class="section-header">
+        <span class="section-icon">🍽</span>
+        <h2 class="section-title">前菜 · Starter</h2>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-name">
+            <span class="dish-emoji">🥬</span>
+            <span class="dish-title">银芽榨菜 · Bean Sprouts with Pickled Mustard</span>
+          </div>
+          <p class="dish-description">嫩绿豆芽配爽脆榨菜，口感清爽，开胃下饭。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="menu-section">
+      <div class="section-header">
+        <span class="section-icon">🍽</span>
+        <h2 class="section-title">主菜 · Main Course</h2>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-name">
+            <span class="dish-emoji">🦐</span>
+            <span class="dish-title">罗氏虾丝瓜汤 · Giant River Prawn with Luffa Soup</span>
+          </div>
+          <p class="dish-description">罗氏虾鲜美，丝瓜清甜，汤汁浓郁清香。</p>
+        </li>
+        <li class="dish-item">
+          <div class="dish-name">
+            <span class="dish-emoji">🐟</span>
+            <span class="dish-title">三文鱼刺身 · Salmon Sashimi</span>
+          </div>
+          <p class="dish-description">新鲜三文鱼，肉质鲜嫩，口感细腻，营养丰富。</p>
+        </li>
+        <li class="dish-item">
+          <div class="dish-name">
+            <span class="dish-emoji">🥬</span>
+            <span class="dish-title">清炒苋菜 · Stir-fried Amaranth</span>
+          </div>
+          <p class="dish-description">嫩苋菜清炒，保留原味清香，营养健康。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="menu-section">
+      <div class="section-header">
+        <span class="section-icon">🍽</span>
+        <h2 class="section-title">配菜 · Side Dish</h2>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-name">
+            <span class="dish-emoji">🍚</span>
+            <span class="dish-title">蒸米饭 · Steamed Rice</span>
+          </div>
+          <p class="dish-description">甄选优质大米，松软喷香，是百搭主食。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="menu-section">
+      <div class="section-header">
+        <span class="section-icon">🍽</span>
+        <h2 class="section-title">回味甜点 · Dessert</h2>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-name">
+            <span class="dish-emoji">🍇</span>
+            <span class="dish-title">巨峰葡萄 · Kyoho Grapes</span>
+          </div>
+          <p class="dish-description">果粒饱满，皮薄汁多，酸甜适口，饭后解腻。</p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">返回首页</a>
+      <a href="2024-09-19-menu.html" class="nav-link">上一篇菜单</a>
+    </div>
+  </div>
+</body>
+</html>
